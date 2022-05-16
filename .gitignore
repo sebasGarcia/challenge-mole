@@ -1,1 +1,7 @@
 HAM10000_images/
+hmnist_28_28_RGB.csv
+hmnist_28_28_L.csv
+hmnist_8_8_RGB.csv
+hmnist_8_8_L.csv
+HAM10000_metadata.csv
+model/
