@@ -4,4 +4,5 @@ hmnist_28_28_L.csv
 hmnist_8_8_RGB.csv
 hmnist_8_8_L.csv
 HAM10000_metadata.csv
-model/
+model/best_model1.h5
+model/best_model1 - Copy.h5
