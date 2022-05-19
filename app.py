@@ -9,10 +9,15 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.activations import softmax
 
 
+#Setting image icon for tab on Browser taken from <a href="https://www.flaticon.com/free-icons/skin" title="skin icons">Skin icons created by Victoruler - Flaticon</a>
+icon_page = Image.open('skincare.png')
 
+#Change default name of app on Browser Tab
+st.set_page_config(page_title='SkinCare: Mole Detector App', page_icon=icon_page)
 st.header("SkinCare: Mole Detector")
 
 def main():
+    
     image_uploaded = st.file_uploader("Please upload the picture of the mole", type = ['jpg'])
     if image_uploaded is not None:
         image = Image.open(image_uploaded)
