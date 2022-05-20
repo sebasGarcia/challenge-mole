@@ -77,7 +77,6 @@ def predict_class(image):
 #     print(image_type)
     
 #     result = "The mole type is likely: {} - {}".format(image_type[0], image_type[1])
-
     return result
 
 if __name__ == '__main__':
