@@ -41,13 +41,42 @@ def predict_class(image):
     classes = {4: ('nv', ' melanocytic nevi'), 6: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
 
     predictions = model.predict(test_image)
-    scores = tf.nn.softmax(predictions[0])
+    print(predictions)
+    #Showing more than 1 result. Ref https://stackoverflow.com/questions/43488194/get-order-of-class-labels-for-keras-predict-function
 
-    scores = scores.numpy()
-    image_type = classes[np.argmax(scores)]
-    print(image_type)
+# sorting the predictions in descending order
+    sorting = (-predictions).argsort()
+
+# getting the top 5 predictions, can also be changed to all 7 or less
+    sorted_ = sorting[0][:5]
+    result = ""
+    for value in sorted_:
+ 
+        predicted_label = classes[value]
+
+    # just some rounding steps
+        prob = (predictions[0][value]) * 100
+        prob = "%.2f" % round(prob,2)
+        prob = str(prob) + "%"
+        # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label))
+        # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label[0],predicted_label[1]))
+        #TO DO: Check if this a gramatically correct:
+        result += "{}The mole type is {} likely to belong to: {} - {} \n".format("\n",prob, predicted_label[0],predicted_label[1])
+
+#     matches = np.argmax(predictions, axis=1)
+#     print(matches)
+
+#     scores = tf.nn.softmax(predictions[0])
+#     #scores = tf.nn.softmax(predictions)
+
+#     scores = scores.numpy()
+#     print(scores)
+#     image_type = classes[np.argmax(scores)]
+#    # image_type1 = classes[np.argmax(scores)]
+#    # print(image_types)
+#     print(image_type)
     
-    result = "The mole type is likely: {} - {}".format(image_type[0], image_type[1])
+#     result = "The mole type is likely: {} - {}".format(image_type[0], image_type[1])
 
     return result
 
