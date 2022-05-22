@@ -1,4 +1,4 @@
-# Computer vision project - Mole detection with Tensorflow. Deployment with Streamlit and Heroku
+# Computer Vision project - Mole detection with TensorFlow. Deployment with Streamlit and Heroku
 
 ## Description
 
@@ -48,7 +48,7 @@ The Streamlit application is a simple but functional solution where the user can
 
 ### Uploading Mole image
 
-![Decision Tree Matrix](https://github.com/bakiguher/arcelor_mittal/blob/sebastian/data/decision%20tree%20matrix.JPG)
+![upload](https://github.com/sebasGarcia/challenge-mole/blob/dev/app_upload.JPG)
 
 
 
@@ -56,7 +56,7 @@ The Streamlit application is a simple but functional solution where the user can
 
 And afterwards, get the results of the mole classification on the screen.
 
-![Random Forest Matrix](https://github.com/bakiguher/arcelor_mittal/blob/sebastian/data/rf%20matrix.JPG)
+![results](https://github.com/sebasGarcia/challenge-mole/blob/dev/app_results.JPG)
 
 ## Repo Architecture
 
