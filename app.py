@@ -1,9 +1,12 @@
 import streamlit as st
 import tensorflow as tf
+import json
+import requests
 from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
 import tensorflow_hub as hub
 import numpy as np
+from streamlit_lottie import st_lottie
 from tensorflow.keras import preprocessing
 from tensorflow.keras.models import load_model
 from tensorflow.keras.activations import softmax
@@ -13,23 +16,42 @@ from tensorflow.keras.activations import softmax
 icon_page = Image.open('skincare.png')
 
 #Change default name of app on Browser Tab
-st.set_page_config(page_title='SkinCare: Mole Detector App', page_icon=icon_page)
-st.header("SkinCare: Mole Detector")
+st.set_page_config(page_title='SkinCare: Mole Detector App', page_icon=icon_page, layout="wide")
+st.title("SkinCare: Mole Detector")
 
 def main():
-    
-    image_uploaded = st.file_uploader("Please upload the picture of the mole", type = ['jpg'])
-    if image_uploaded is not None:
-        image = Image.open(image_uploaded)
-        figure = plt.figure()
-        plt.imshow(image)
-        plt.axis('off')
-        #here I will have to put the name of the class that predicts:
-        result = predict_class(image)
-        st.subheader(result)
-        st.pyplot(figure)
+    """
+    This main function contains the necessary code to run the Streamlit webapp
+    """
+    col1, col2 = st.columns([1,3])
+    #col1, col2 = st.columns(2)
+    lottie_animation = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_sxrzmxih.json")
+    lottie_animation2 = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_zpjfsp1e.json")
+    with st.container():
+        with col1:
+            st_lottie(lottie_animation,
+            height=384,
+            width=384)
+
+        with col2:
+            image_uploaded = st.file_uploader("Please upload the picture of the mole", type = ['jpg'])
+            if image_uploaded is not None:
+                image = Image.open(image_uploaded)
+                #figure = plt.figure()
+                #plt.imshow(image)
+                #plt.axis('off')
+            
+                result = predict_class(image)
+                st.subheader(result)
+                #st.pyplot(figure)
+                #st.image(image, use_column_width=True)
+                st.image(image, use_column_width=False)
 
 def predict_class(image):
+    """
+    This function receives an image and returns a prediction based on a saved model
+    
+    """
     cl_model = tf.keras.models.load_model("./model/my_model.h5")
     shape = ((224,224,3))
     model = tf.keras.Sequential([hub.KerasLayer(cl_model, input_shape=shape)])
@@ -47,8 +69,8 @@ def predict_class(image):
 # sorting the predictions in descending order
     sorting = (-predictions).argsort()
 
-# getting the top 5 predictions, can also be changed to all 7 or less
-    sorted_ = sorting[0][:5]
+# getting the top 4 predictions, can also be changed to all 7 or less
+    sorted_ = sorting[0][:4]
     result = ""
     for value in sorted_:
  
@@ -60,7 +82,7 @@ def predict_class(image):
         prob = str(prob) + "%"
         # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label))
         # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label[0],predicted_label[1]))
-        #TO DO: Check if this a gramatically correct:
+        
         result += "{}The mole type is {} likely to belong to: {} - {} \n".format("\n",prob, predicted_label[0],predicted_label[1])
 
 #     matches = np.argmax(predictions, axis=1)
@@ -78,6 +100,16 @@ def predict_class(image):
     
 #     result = "The mole type is likely: {} - {}".format(image_type[0], image_type[1])
     return result
+
+def load_lottieurl(url:str):
+    """
+    This function is used to show an animation on the webpage
+    """
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None 
+
+    return r.json()
 
 if __name__ == '__main__':
     main()
