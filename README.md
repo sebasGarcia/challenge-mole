@@ -36,7 +36,7 @@ The workflow of this project can be illustrated with the image below.
 
 ### Deployment
 
-After the model was created and tested, the deployment of the Streamlit app took place and afterwards the deployment of the app on Heroku:
+After the model was created and tested, the development of the Streamlit app took place and afterwards the deployment of the app on Heroku:
 
 
 ![deployment](https://miro.medium.com/max/1400/1*sPyUqSFLEXGYrezcq5LgTg.png)
