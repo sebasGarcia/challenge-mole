@@ -24,7 +24,7 @@ def main():
     This main function contains the necessary code to run the Streamlit webapp
     """
     col1, col2 = st.columns([1,3])
-    #col1, col2 = st.columns(2)
+
     lottie_animation = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_sxrzmxih.json")
     lottie_animation2 = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_zpjfsp1e.json")
     with st.container():
@@ -37,14 +37,9 @@ def main():
             image_uploaded = st.file_uploader("Please upload the picture of the mole", type = ['jpg'])
             if image_uploaded is not None:
                 image = Image.open(image_uploaded)
-                #figure = plt.figure()
-                #plt.imshow(image)
-                #plt.axis('off')
-            
+                       
                 result = predict_class(image)
                 st.subheader(result)
-                #st.pyplot(figure)
-                #st.image(image, use_column_width=True)
                 st.image(image, use_column_width=False)
 
 def predict_class(image):
@@ -76,29 +71,13 @@ def predict_class(image):
  
         predicted_label = classes[value]
 
-    # just some rounding steps
         prob = (predictions[0][value]) * 100
         prob = "%.2f" % round(prob,2)
         prob = str(prob) + "%"
-        # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label))
-        # print("I have %s%% sure that it belongs to %s." % (prob, predicted_label[0],predicted_label[1]))
+      
         
         result += "{}The mole type is {} likely to belong to: {} - {} \n".format("\n",prob, predicted_label[0],predicted_label[1])
 
-#     matches = np.argmax(predictions, axis=1)
-#     print(matches)
-
-#     scores = tf.nn.softmax(predictions[0])
-#     #scores = tf.nn.softmax(predictions)
-
-#     scores = scores.numpy()
-#     print(scores)
-#     image_type = classes[np.argmax(scores)]
-#    # image_type1 = classes[np.argmax(scores)]
-#    # print(image_types)
-#     print(image_type)
-    
-#     result = "The mole type is likely: {} - {}".format(image_type[0], image_type[1])
     return result
 
 def load_lottieurl(url:str):
