@@ -27,7 +27,7 @@ The workflow of this project can be illustrated with the image below.
 
 2. Clean, Prepare & Manipulate Data: A simple exploratory analysis took place to see the distribution of the data. Oversampling was done to increase the amount of certain mole types in the dataset, duplicates were removed and image augmentation.
 
-3. Train Model: The Neural Network Classifier was trained using ImageNet from Tensorflow after performing a train, test and validation split.
+3. Train Model: The Neural Network Classifier was trained using MobileNetV2 from TensorFlow after performing a train, test and validation split.
 
 4. Test Data: The model was tested with the test dataset.
 
