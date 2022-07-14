@@ -6,9 +6,6 @@ The health care company "skinCare" would like a tool that is able to detect mole
 This AI tool detects the type of mole when a picture is uploaded on the web page and shows the accuracy the model has.
 Since this is a Proof of Concept, the design of the website is simple but functional and runs on Heroku.
 
-
-![skincare (GIF)](https://media.giphy.com/media/MCRrrB2WeQcYxn55MC/giphy.gif)
-
 ### Workflow 
 
 The workflow of this project can be illustrated with the image below.
@@ -114,7 +111,3 @@ Sebastián García martínez\
 8 days
 
 16/05/2022 - 25/05/2022
-
-
-![skincaree(GIF)](https://media.giphy.com/media/F1h0YEIl8fbLGuw6ny/giphy.gif)
-
